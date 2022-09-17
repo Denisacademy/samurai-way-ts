@@ -1,11 +1,6 @@
 /*HEADER*/
-.header {
-    grid-area: header;
-    background: #f9f9f9;
-    padding: 10px;
-}
 
-.header .logo {
+.logo {
     width: 109px;
     /* height: 109px; */
     /* border-radius: 10%; */

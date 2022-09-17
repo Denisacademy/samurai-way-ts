@@ -1,0 +1,16 @@
+.userMessage {
+    position: relative;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+.userMessage h3::before {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    background: #ffe707;
+    border-radius: 50%;
+}

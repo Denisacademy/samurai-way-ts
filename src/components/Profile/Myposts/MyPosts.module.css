@@ -1,0 +1,37 @@
+.myPosts {
+    width: 95%;
+    margin: 0 auto;
+    position: relative;
+    padding: 20px;
+}
+
+.myPosts h3 {
+    padding-left: 50px;
+}
+
+form div {
+    display: grid;
+    justify-content: end;
+}
+
+.myPosts .btn {
+    padding: 6px 70px;
+    background: #6fc5d0;
+    border: 0;
+    font-size: 1.4rem;
+    color: white;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+}
+
+.myPosts .btn:hover {
+    background-color: #2EE59D;
+    box-shadow: 0 15px 20px rgba(46, 229, 157, 0.4);
+    color: #fff;
+    /*transform: translateY(-7px);*/
+}
+
