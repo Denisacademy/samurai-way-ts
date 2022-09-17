@@ -1,0 +1,14 @@
+/*HEADER*/
+.header {
+    grid-area: header;
+    background: #f9f9f9;
+    padding: 10px;
+}
+
+.header .logo {
+    width: 109px;
+    /* height: 109px; */
+    /* border-radius: 10%; */
+    margin-left: 30px;
+    opacity: 0.7;
+}
