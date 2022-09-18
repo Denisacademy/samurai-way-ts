@@ -8,16 +8,16 @@
     font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
     font-size: 1rem;
     color: #76897f;
-    background: #76897f;
+    background: #c3d3da;
 }
 
 a {
     text-decoration: none;
     color: cornflowerblue;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     display: block;
     padding: 10px;
-    background: white;
+    background: #3f51b5;
     margin-bottom: 10px;
 }
 
@@ -36,24 +36,27 @@ img {
     'nav content';
     grid-template-columns: 1fr 5fr;
     gap: 10px;
-    background: white;
+    /*background: #5b7778;*/
 }
 
 .header {
     grid-area: header;
-    background: #f9f9f9;
+    background:#f9f9f9;
     padding: 10px;
 }
 
 .nav {
     grid-area: nav;
-    background: aliceblue;
+    background: #a5ced0;
     padding: 20px;
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
 }
 
 .content {
     grid-area: content;
-    background: #f5f5f5;
+    background: white;
+    padding: 15px;
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
 }
 
 /*.btn {*/

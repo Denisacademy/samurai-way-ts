@@ -5,23 +5,28 @@
     padding: 20px;
     opacity: 0.5;
     background-image: url('https://images.unsplash.com/photo-1557434440-d4d48e6578b5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1935&q=80') ;
-    height: 320px;
+    height: 220px;
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: 0 -690px;
+     background-position: 0 60%
     /*background-attachment: fixed;*/
 }
 
  .avatar {
-    border-radius: 50%;
+
+     width: 160px;
+     height: 155px;
+     display: block;
+     border-radius: 50%;
+     object-fit: cover;
 }
 
  .userInfo {
-    padding: 10px;
+    padding: 0 10px 0 10px;
     display: grid;
-    grid-template-columns: 100px auto;
+    grid-template-columns: 160px auto;
     gap: 50px;
-    margin: 15px 0 15px 0;
+
     /*align-items: center;*/
 }
 
@@ -29,13 +34,15 @@
     margin-bottom: 25px;
 }
 
+
+
  form input {
-    padding: 20px;
+    padding: 10px;
     width: 100%;
     background: #dce1de;
-    font-size: 20px;
+    font-size: 16px;
     border: 0;
-    margin: 20px 0 20px 0;
+    margin: 20px 0 10px 0;
     border-radius: 5px;
 }
 

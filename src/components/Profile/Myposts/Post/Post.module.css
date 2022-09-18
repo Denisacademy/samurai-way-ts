@@ -1,16 +1,39 @@
 .userMessage {
-    position: relative;
-    padding: 20px;
-    margin-bottom: 10px;
+    padding: 8px;
+    margin: 10px;
+    background: #76897f;
+    border-radius: 10px;
+    color: aliceblue;
 }
 
-.userMessage h3::before {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 50px;
-    height: 50px;
-    background: #ffe707;
+.userMessage .status {
+    width: 15px;
+    height: 15px;
     border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+    /*background: yellow;*/
 }
+
+div span:last-child {
+    font-weight: bold;
+}
+
+.userMessage .time {
+    display: flex;
+    justify-content: end;
+    color: black;
+    font-weight: bold;
+    padding-right: 20px;
+}
+
+/*.userMessage p::before {*/
+/*    content: '';*/
+/*    position: absolute;*/
+/*    top: 7%;*/
+/*    left: 1%;*/
+/*    width: 25px;*/
+/*    height: 25px;*/
+/*    background: #ffe707;*/
+/*    border-radius: 50%;*/
+/*}*/

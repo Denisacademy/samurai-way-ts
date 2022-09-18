@@ -1,10 +1,26 @@
 import styles from "./Post.module.css";
 import React from "react";
 
-const Post = () => {
+type PostProps = {
+    message: string
+    name: string
+    status: string
+    color: string
+    time: string
+}
+
+
+const time = new Date().getHours() + ':' + new Date().getMinutes()
+
+const Post = (props: PostProps) => {
     return (
         <div className={styles.userMessage}>
-            <h3>Hey, why nobody loves me?</h3>
+            <h3 style={{color: props.color}}>
+                <span style={{background: props.status}} className={styles.status}></span>
+                {props.name}
+            </h3>
+            <p>{props.message}</p>
+            <span className={styles.time}>{props.time}</span>
         </div>
     )
 }
