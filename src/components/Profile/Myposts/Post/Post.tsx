@@ -1,12 +1,25 @@
 import styles from "./Post.module.css";
 import React from "react";
 
-type PostProps = {
+
+// type PostType = {
+//     message: string
+//     name: string
+//     status: string
+//     color: string
+//     time: string
+//     id: number
+// }
+
+
+export type PostProps = {
     message: string
     name: string
     status: string
     color: string
     time: string
+    id: number
+    // likesCount: number
 }
 
 
