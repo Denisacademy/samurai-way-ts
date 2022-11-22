@@ -1,5 +1,3 @@
-// import {testTree} from "../render";
-
 let rerenderEntireTree = () => {
     console.log('state changed')
 }
@@ -141,7 +139,9 @@ export const addPost = (postMessage: string) => {
     }
     state.profilePage.newPostText = ''
     state.profilePage.posts.push(newPost)
+
     rerenderEntireTree()
+
 }
 
 export const updateNewPostText = (newText: string) => {
@@ -156,8 +156,6 @@ export const subscribe = (observer: () => void) => {
 // export const subscribe = (observer: (state: RootStateType) => void) => {
 //     rerenderEntireTree = observer
 // }
-
-
 
 // @ts-ignore
 window.state = state
