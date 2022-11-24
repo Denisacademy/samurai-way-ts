@@ -6,7 +6,7 @@ import Profile from "./components/Profile/Profile";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 
 import {BrowserRouter, Route} from "react-router-dom";
-import {RootStateType, state} from "./redux/state";
+import {RootStateType, state, store} from "./redux/state";
 
 type AppPropsType = {
     state: RootStateType
@@ -15,14 +15,18 @@ type AppPropsType = {
 }
 
 const App = (props: AppPropsType) => {
+    //console.log(store)
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
                 <Nav/>
                 <div className='app-wrapper-content'>
-                    <Route path='/dialogs' render={() => <Dialogs state={props.state.dialogsPage}/>}/>
-                    <Route path='/profile' render={() => <Profile updateNewPostText={props.updateNewPostText} addPost={props.addPost} state={props.state.profilePage}/>}/>
+                    <Route path='/dialogs' render={() => <Dialogs state={store.state.dialogsPage}/>}/>
+                    <Route path='/profile' render={() => <Profile
+                        updateNewPostText={props.updateNewPostText}
+                        addPost={props.addPost}
+                        state={store.state.profilePage}/>}/>
                 </div>
             </div>
         </BrowserRouter>

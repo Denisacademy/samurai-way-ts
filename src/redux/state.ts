@@ -127,35 +127,67 @@ export const state: RootStateType = {
     }
 }
 
-export const addPost = (postMessage: string) => {
-    const newPost: PostsType = {
-        id: 5,
-        color: 'blue',
-        status: 'cyan',
-        time: '13:06',
-        name: 'Pinokio',
-        message: postMessage,
-        likesCount: 0
-    }
-    state.profilePage.newPostText = ''
-    state.profilePage.posts.push(newPost)
-
-    rerenderEntireTree()
-
-}
-
-export const updateNewPostText = (newText: string) => {
-    state.profilePage.newPostText = newText
-    rerenderEntireTree()
-}
-
-export const subscribe = (observer: () => void) => {
-        rerenderEntireTree = observer
-}
+// export const addPost = (postMessage: string) => {
+//     const newPost: PostsType = {
+//         id: 5,
+//         color: 'blue',
+//         status: 'cyan',
+//         time: '13:06',
+//         name: 'Pinokio',
+//         message: postMessage,
+//         likesCount: 0
+//     }
+//     state.profilePage.newPostText = ''
+//     state.profilePage.posts.push(newPost)
+//
+//     rerenderEntireTree()
+//
+// }
+//
+// export const updateNewPostText = (newText: string) => {
+//     state.profilePage.newPostText = newText
+//     rerenderEntireTree()
+// }
+//
+// export const subscribe = (observer: () => void) => {
+//         rerenderEntireTree = observer
+// }
 
 // export const subscribe = (observer: (state: RootStateType) => void) => {
 //     rerenderEntireTree = observer
 // }
+
+export const store : any ={
+    state,
+    subscriber() {
+        console.log('test')
+    },
+    subscribe(observer: any) {
+        this.subscriber = observer
+    },
+    getState() {
+        console.log(this.state)
+    },
+    updateNewPostText(newText : string) {
+        console.log(this.state)
+        this.state.profilePage.newPostText = newText
+        this.subscriber()
+    },
+    addPost(postMessage : string) {
+        const newPost: PostsType = {
+            id: 5,
+            color: 'blue',
+            status: 'cyan',
+            time: '13:06',
+            name: 'Pinokio',
+            message: postMessage,
+            likesCount: 0
+        }
+        this.state.profilePage.newPostText = ''
+        this.state.profilePage.posts.push(newPost)
+        this.subscriber()
+    }
+}
 
 // @ts-ignore
 window.state = state
