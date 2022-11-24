@@ -2,6 +2,10 @@ let rerenderEntireTree = () => {
     console.log('state changed')
 }
 
+
+const ADD_POST = 'ADD-POST'
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+
 const user1 = 'First ensure that all HTML elements have the box-sizing property set to border-box. This makes sure that... '
 const user2 = 'The columns inside a row are all floating to the left'
 const user3 = 'Disable the automatic acquisition of types for imports and requires.'
@@ -165,24 +169,31 @@ export type StoreType = {
     getState: () => RootStateType
     subscribe: (callback: () => void) => void
 
-    updateNewPostText : (newText: string) => void
+    updateNewPostText: (newText: string) => void
     addPost: (newPost: string) => void
     dispatch: (action: ActionsTypes) => void
 }
 
-export type AddPostActionType = {
-    type: 'ADD-POST'
-    postMessage : string
-}
+// export type AddPostActionType = {
+//     type: 'ADD-POST'
+//     postMessage: string
+// }
 
-export type updateNewPostText = {
-    type: 'UPDATE-NEW-POST-TEXT'
-    newText : string
-}
+//export type AddPostActionType = ReturnType<typeof addPostAC>
 
-export type ActionsTypes = AddPostActionType | updateNewPostText
 
-export const store : StoreType ={
+//export type updateNewPostText = ReturnType<typeof changeNewText>
+
+
+// export type updateNewPostText = {
+//     type: 'UPDATE-NEW-POST-TEXT'
+//     newText: string
+// }
+
+// export type ActionsTypes = AddPostActionType | updateNewPostText
+export type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof changeNewText>
+
+export const store: StoreType = {
     state,
     subscriber() {
         console.log('subscriber')
@@ -213,7 +224,7 @@ export const store : StoreType ={
         console.log(this.state)
     },
     dispatch(action) { //{type: 'ADD-POST'}
-        if(action.type === 'ADD-POST') {
+        if (action.type === ADD_POST) {
             const newPost: PostsType = {
                 id: 5,
                 color: 'blue',
@@ -226,12 +237,43 @@ export const store : StoreType ={
             this.state.profilePage.newPostText = ''
             this.state.profilePage.posts.push(newPost)
             this.subscriber()
-        }else if(action.type === 'UPDATE-NEW-POST-TEXT') {
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
+            //console.log('changes')
             this.state.profilePage.newPostText = action.newText
             this.subscriber()
         }
     }
 }
+
+
+export const addPostAC = (postMessage: string)  => {
+    return {
+        type: ADD_POST,
+        postMessage
+    } as const
+}
+
+// export const addPostAC = (postMessage: string): AddPostActionType => {
+//     return {
+//         type: ADD_POST,
+//         postMessage
+//     }
+// }
+
+export const changeNewText = (newText: string) => {
+    return {
+        type: UPDATE_NEW_POST_TEXT,
+        newText
+    } as const
+}
+
+
+// export const changeNewText = (newText: string): updateNewPostText => {
+//     return {
+//         type: UPDATE_NEW_POST_TEXT,
+//         newText
+//     }
+// }
 
 //store.dispatch({type: "ADD-POST", postMessage : 'olo'})
 // @ts-ignore

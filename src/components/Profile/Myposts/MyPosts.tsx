@@ -2,14 +2,32 @@ import styles from "./MyPosts.module.css";
 import Post from "./Post/Post";
 import React, {ChangeEvent, createRef} from "react";
 
-import {PostsType} from "../../../redux/state";
+import {ActionsTypes, addPostAC, PostsType, changeNewText} from "../../../redux/state";
+
 
 type MyPostsProps = {
     posts: Array<PostsType>
-    addPost: (postMessage: string) => void
-    updateNewPostText: (newText: string) => void
+    // addPost: (postMessage: string) => void
+    // updateNewPostText: (newText: string) => void
     newPostText: string
+    dispatch: (action: ActionsTypes) => void
 }
+
+// const addPostActionCreator = (postMessage: string) => {
+//     const action: ActionsTypes = {
+//         type: "ADD-POST",
+//         postMessage: postMessage
+//     }
+//     return action
+// }
+//
+// const onPostChangeActionCreator = (newText: string) => {
+//     const action: ActionsTypes = {
+//         type: 'UPDATE-NEW-POST-TEXT',
+//         newText: newText
+//     }
+//     return action
+// }
 
 const MyPosts = (props: MyPostsProps) => {
     //const newPostElement = createRef<HTMLInputElement>()
@@ -30,11 +48,18 @@ const MyPosts = (props: MyPostsProps) => {
 
     const addPostHandler = (e: React.SyntheticEvent) => {
         e.preventDefault()
-        props.addPost(props.newPostText)
+        //props.addPost(props.newPostText)
+        //console.log('opps', e)
+        //debugger
+
+        //props.dispatch({ type: 'ADD-POST', postMessage: props.newPostText })
+        props.dispatch(addPostAC(props.newPostText))
     }
 
     const onPostChange = (e: ChangeEvent<HTMLInputElement>) => {
-        props.updateNewPostText(e.currentTarget.value)
+        //props.updateNewPostText(e.currentTarget.value)
+        // props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText : e.currentTarget.value})
+        props.dispatch(changeNewText(e.currentTarget.value))
     }
 
     const postElements = props.posts.map(post => <Post key={post.id}  {...post}/>)
