@@ -157,14 +157,30 @@ export const state: RootStateType = {
 //     rerenderEntireTree = observer
 // }
 
+
 export type StoreType = {
     state: RootStateType,
     subscriber: () => void,
-    subscribe: (callback: () => void) => void
+
     getState: () => RootStateType
+    subscribe: (callback: () => void) => void
+
     updateNewPostText : (newText: string) => void
     addPost: (newPost: string) => void
+    dispatch: (action: ActionsTypes) => void
 }
+
+export type AddPostActionType = {
+    type: 'ADD-POST'
+    postMessage : string
+}
+
+export type updateNewPostText = {
+    type: 'UPDATE-NEW-POST-TEXT'
+    newText : string
+}
+
+export type ActionsTypes = AddPostActionType | updateNewPostText
 
 export const store : StoreType ={
     state,
@@ -194,8 +210,29 @@ export const store : StoreType ={
         this.state.profilePage.newPostText = ''
         this.state.profilePage.posts.push(newPost)
         this.subscriber()
+        console.log(this.state)
+    },
+    dispatch(action) { //{type: 'ADD-POST'}
+        if(action.type === 'ADD-POST') {
+            const newPost: PostsType = {
+                id: 5,
+                color: 'blue',
+                status: 'cyan',
+                time: '13:06',
+                name: 'Pinokio',
+                message: action.postMessage,
+                likesCount: 0
+            }
+            this.state.profilePage.newPostText = ''
+            this.state.profilePage.posts.push(newPost)
+            this.subscriber()
+        }else if(action.type === 'UPDATE-NEW-POST-TEXT') {
+            this.state.profilePage.newPostText = action.newText
+            this.subscriber()
+        }
     }
 }
 
+//store.dispatch({type: "ADD-POST", postMessage : 'olo'})
 // @ts-ignore
 window.state = state
