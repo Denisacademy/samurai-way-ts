@@ -157,23 +157,31 @@ export const state: RootStateType = {
 //     rerenderEntireTree = observer
 // }
 
-export const store : any ={
+export type StoreType = {
+    state: RootStateType,
+    subscriber: () => void,
+    subscribe: (callback: () => void) => void
+    getState: () => RootStateType
+    updateNewPostText : (newText: string) => void
+    addPost: (newPost: string) => void
+}
+
+export const store : StoreType ={
     state,
     subscriber() {
-        console.log('test')
+        console.log('subscriber')
     },
-    subscribe(observer: any) {
+    subscribe(observer) {
         this.subscriber = observer
     },
     getState() {
-        console.log(this.state)
+        return this.state
     },
-    updateNewPostText(newText : string) {
-        console.log(this.state)
+    updateNewPostText(newText) {
         this.state.profilePage.newPostText = newText
         this.subscriber()
     },
-    addPost(postMessage : string) {
+    addPost(postMessage) {
         const newPost: PostsType = {
             id: 5,
             color: 'blue',

@@ -8,18 +8,7 @@ import {dialogsPageType} from "../../redux/state";
 type DialogsProps = {
     state: dialogsPageType
 }
-/*
-const Greeting: React.FC<GreetingPropsType> = (
-    {
-        name,
-        setNameCallback,
-    } // деструктуризация пропсов
-) => {
-*/
-
-//export const Dialogs: React.FC<DialogsProps> = () => {
-
-export const Dialogs = (props: DialogsProps) => {
+const Dialogs = (props: DialogsProps) => {
     const textMessage = createRef<HTMLTextAreaElement>()
 
     const addMessage = () => {
@@ -41,3 +30,4 @@ export const Dialogs = (props: DialogsProps) => {
     )
 }
 
+export default Dialogs
