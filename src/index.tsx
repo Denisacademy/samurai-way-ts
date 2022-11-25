@@ -13,7 +13,6 @@ function rerenderEntireTree() {
     );
 }
 
-
 //     ReactDOM.render(
 //         <RouterComp/>,
 //         document.getElementById('root')

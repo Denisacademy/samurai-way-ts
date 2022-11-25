@@ -27,10 +27,14 @@ const Dialogs = (props: DialogsProps) => {
         props.dispatch(sendMessageAC(props.newMessageBody))
     }
 
-    const dialogElements = props.state.dialogs.map(dialog => <DialogItem key={dialog.id} name={dialog.name}
-                                                                         id={dialog.id}/>)
-    const messagesElements = props.state.messages.map(message => <MessageItem key={message.id}
-                                                                              message={message.message}/>)
+    const dialogElements = props.state.dialogs.map(dialog => <DialogItem
+        key={dialog.id}
+        name={dialog.name}
+        id={dialog.id}/>)
+    const messagesElements = props.state.messages.map(message => <MessageItem
+        key={message.id}
+        message={message.message}/>)
+
     return (
         <div className={style.dialogs}>
             <div className={style.dialogsItems}>

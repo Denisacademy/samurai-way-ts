@@ -1,3 +1,7 @@
+import profileReducer from "./profile-reducer";
+import dialogsReducer from "./dialogs-reducer";
+import sidebarReducer from "./sidebar-reducer";
+
 let rerenderEntireTree = () => {
     console.log('state changed')
 }
@@ -50,6 +54,7 @@ export type dialogsPageType = {
 export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: dialogsPageType
+    sidebar: any
 }
 
 export const state: RootStateType = {
@@ -112,6 +117,9 @@ export const state: RootStateType = {
             {id: 6, name: 'Valera'},
         ],
         newMessageBody: 'Party size'
+    },
+    sidebar: {
+
     }
 }
 
@@ -210,37 +218,42 @@ export const store: StoreType = {
     //     this.subscriber()
     //     console.log(this.state)
     // },
-    dispatch(action) { //{type: 'ADD-POST'}
-        if (action.type === ADD_POST) {
-            console.log(this.state)
-            const newPost: PostsType = {
-                id: 5,
-                color: 'blue',
-                status: 'cyan',
-                time: '13:06',
-                name: 'Pinokio',
-                message: action.postMessage,
-                likesCount: 0
-            }
-            this.state.profilePage.newPostText = ''
-            this.state.profilePage.posts.push(newPost)
-            this.subscriber()
-        }
-        else if (action.type === UPDATE_NEW_POST_TEXT) {
-            this.state.profilePage.newPostText = action.newText
-            this.subscriber()
-        }
-        else if (action.type === CHANGE_BODY_TEXT) {
-            this.state.dialogsPage.newMessageBody = action.newBody
-            this.subscriber()
-        }
-
-        if (action.type === SEND_MESSAGE) {
-            const body: MessagesType = {id: 7, message: action.message}
-            this.state.profilePage.newPostText = ''
-             this.state.dialogsPage.messages.push(body)
-             this.subscriber()
-        }
+    // dispatch(action) { //{type: 'ADD-POST'}
+    //     if (action.type === ADD_POST) {
+    //         console.log(this.state)
+    //         const newPost: PostsType = {
+    //             id: 5,
+    //             color: 'blue',
+    //             status: 'cyan',
+    //             time: '13:06',
+    //             name: 'Pinokio',
+    //             message: action.postMessage,
+    //             likesCount: 0
+    //         }
+    //         this.state.profilePage.newPostText = ''
+    //         this.state.profilePage.posts.push(newPost)
+    //         this.subscriber()
+    //     }
+    //     else if (action.type === UPDATE_NEW_POST_TEXT) {
+    //         this.state.profilePage.newPostText = action.newText
+    //         this.subscriber()
+    //     }
+    //     else if (action.type === CHANGE_BODY_TEXT) {
+    //         this.state.dialogsPage.newMessageBody = action.newBody
+    //         this.subscriber()
+    //     }
+    //     else if (action.type === SEND_MESSAGE) {
+    //         const body: MessagesType = {id: 7, message: action.message}
+    //         this.state.profilePage.newPostText = ''
+    //          this.state.dialogsPage.messages.push(body)
+    //          this.subscriber()
+    //     }
+    // }
+    dispatch(action: ActionsTypes) {
+        this.state.profilePage = profileReducer(this.state.profilePage, action)
+        this.state.dialogsPage = dialogsReducer(this.state.dialogsPage, action)
+        this.state.sidebar = sidebarReducer(this.state.sidebar, action)
+        this.subscriber()
     }
 }
 

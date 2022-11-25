@@ -2,7 +2,7 @@ import styles from "./MyPosts.module.css";
 import Post from "./Post/Post";
 import React, {ChangeEvent, createRef} from "react";
 
-import {ActionsTypes, addPostAC, PostsType, changeNewText} from "../../../redux/state";
+import {ActionsTypes, addPostAC, PostsType, changeNewTextAC} from "../../../redux/state";
 
 
 type MyPostsProps = {
@@ -59,7 +59,7 @@ const MyPosts = (props: MyPostsProps) => {
     const onPostChange = (e: ChangeEvent<HTMLInputElement>) => {
         //props.updateNewPostText(e.currentTarget.value)
         // props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText : e.currentTarget.value})
-        props.dispatch(changeNewText(e.currentTarget.value))
+        props.dispatch(changeNewTextAC(e.currentTarget.value))
     }
 
     const postElements = props.posts.map(post => <Post key={post.id}  {...post}/>)
