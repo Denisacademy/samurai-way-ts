@@ -1,22 +1,36 @@
-import React, {createRef} from "react";
+import React, {ChangeEventHandler, createRef} from "react";
 import style from './Dialogs.module.css'
 import {NavLink} from "react-router-dom";
 import {DialogItem, DialogItemProps} from "./DialogItem/DialogItem";
 import {MessageItem, MessageItemProps} from "./Message/Message";
-import {dialogsPageType} from "../../redux/state";
+import {ActionsTypes, changeTextBodyAC, dialogsPageType, sendMessageAC} from "../../redux/state";
 
 type DialogsProps = {
     state: dialogsPageType
+    dispatch: (action: ActionsTypes) => void
+    newMessageBody: string
 }
 const Dialogs = (props: DialogsProps) => {
-    const textMessage = createRef<HTMLTextAreaElement>()
+    // const textMessage = createRef<HTMLTextAreaElement>()
+    //
+    // const addMessage = () => {
+    //     console.log(textMessage.current?.value)
+    // }
 
-    const addMessage = () => {
-        console.log(textMessage.current?.value)
+    const changeBodyText = (e: any) => {
+        const letter = e.target.value
+        props.dispatch(changeTextBodyAC(letter))
+
     }
 
-    const dialogElements = props.state.dialogs.map(dialog => <DialogItem key={dialog.id} name={dialog.name} id={dialog.id}/>)
-    const messagesElements = props.state.messages.map(message => <MessageItem key={message.id} message={message.message} />)
+    const addMessage = () => {
+        props.dispatch(sendMessageAC(props.newMessageBody))
+    }
+
+    const dialogElements = props.state.dialogs.map(dialog => <DialogItem key={dialog.id} name={dialog.name}
+                                                                         id={dialog.id}/>)
+    const messagesElements = props.state.messages.map(message => <MessageItem key={message.id}
+                                                                              message={message.message}/>)
     return (
         <div className={style.dialogs}>
             <div className={style.dialogsItems}>
@@ -25,7 +39,9 @@ const Dialogs = (props: DialogsProps) => {
             <div className={style.messages}>
                 {messagesElements}
             </div>
-            <textarea onClick={addMessage} ref={textMessage} placeholder='type smth'></textarea>
+            {/*<textarea  ref={textMessage} placeholder='type smth'></textarea>*/}
+            <textarea onChange={changeBodyText} value={props.newMessageBody} placeholder='type smth'></textarea>
+            <button onClick={addMessage}>add message</button>
         </div>
     )
 }

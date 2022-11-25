@@ -21,11 +21,14 @@ const App: React.FC<AppProps> = ({store}) => {
                 <Header/>
                 <Nav/>
                 <div className='app-wrapper-content'>
-                    <Route path='/dialogs' render={() => <Dialogs state={state.dialogsPage}/>}/>
-                    <Route path='/profile'
-                           render={() => <Profile
-                               dispatch={store.dispatch.bind(store)}
-                               state={state.profilePage}/>}/>
+                    <Route path='/dialogs' render={() =>
+                        <Dialogs dispatch={store.dispatch.bind(store)}
+                                 newMessageBody={state.dialogsPage.newMessageBody}
+                                 state={state.dialogsPage}/>}/>
+                    <Route path='/profile' render={() =>
+                        <Profile
+                            dispatch={store.dispatch.bind(store)}
+                            state={state.profilePage}/>}/>
                 </div>
             </div>
         </BrowserRouter>
