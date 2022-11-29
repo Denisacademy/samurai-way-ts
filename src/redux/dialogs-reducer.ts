@@ -23,12 +23,13 @@ const initialState: dialogsPageType = {
     newMessageBody: 'Party size'
 }
 
-const dialogsReducer = (state: dialogsPageType = initialState, action: DialogsActionsType): dialogsPageType => {
+const dialogsReducer = (state: dialogsPageType = initialState, action: ActionsTypes): dialogsPageType => {
     switch (action.type) {
         case  CHANGE_BODY_TEXT:
             state.newMessageBody = action.newBody
             return state
         case SEND_MESSAGE :
+            console.log(action)
             state.messages.push({id: 7, message: action.message})
             state.newMessageBody = ''
             return state

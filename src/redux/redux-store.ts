@@ -6,7 +6,7 @@ import dialogsReducer from "./dialogs-reducer";
 
 const reducers = combineReducers({
     profilePage: profileReducer,
-    dialogsReducer: dialogsReducer,
+    dialogsPage: dialogsReducer,
     sidebar: sidebarReducer,
 })
 

@@ -2,34 +2,19 @@ import styles from "./MyPosts.module.css";
 import Post from "./Post/Post";
 import React, {ChangeEvent, createRef} from "react";
 
-import {ActionsTypes, addPostAC, PostsType, changeNewTextAC} from "../../../redux/state";
-
+import {PostsType} from "../../../redux/state";
 
 type MyPostsProps = {
     posts: Array<PostsType>
-    // addPost: (postMessage: string) => void
-    // updateNewPostText: (newText: string) => void
+    addPost: (postMessage: string) => void
+    updateNewPostText: (newText: string) => void
     newPostText: string
-    dispatch: (action: ActionsTypes) => void
+
 }
 
-// const addPostActionCreator = (postMessage: string) => {
-//     const action: ActionsTypes = {
-//         type: "ADD-POST",
-//         postMessage: postMessage
-//     }
-//     return action
-// }
-//
-// const onPostChangeActionCreator = (newText: string) => {
-//     const action: ActionsTypes = {
-//         type: 'UPDATE-NEW-POST-TEXT',
-//         newText: newText
-//     }
-//     return action
-// }
-
 const MyPosts = (props: MyPostsProps) => {
+    console.log('my piosts', props)
+    //const state = props.state.getState().profilePage
     //const newPostElement = createRef<HTMLInputElement>()
 
     // const addPostHandler = (e: any) => {
@@ -48,21 +33,14 @@ const MyPosts = (props: MyPostsProps) => {
 
     const addPostHandler = (e: React.SyntheticEvent) => {
         e.preventDefault()
-        //props.addPost(props.newPostText)
-        //console.log('opps', e)
-        //debugger
-
-        //props.dispatch({ type: 'ADD-POST', postMessage: props.newPostText })
-        props.dispatch(addPostAC(props.newPostText))
+        props.addPost(props.newPostText)
     }
 
     const onPostChange = (e: ChangeEvent<HTMLInputElement>) => {
-        //props.updateNewPostText(e.currentTarget.value)
-        // props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText : e.currentTarget.value})
-        props.dispatch(changeNewTextAC(e.currentTarget.value))
+        props.updateNewPostText(e.currentTarget.value)
     }
 
-    const postElements = props.posts.map(post => <Post key={post.id}  {...post}/>)
+    const postElements = props.posts.map((post: any) => <Post key={post.id}  {...post}/>)
 
     return (
         <div className={styles.myPosts}>
@@ -70,7 +48,7 @@ const MyPosts = (props: MyPostsProps) => {
                 <h2>My posts</h2>
                 <input name='posUser'
                        onChange={onPostChange}
-                       value={props.newPostText}
+                    value={props.newPostText}
                     // ref={newPostElement}
                        type="text"
                        placeholder='your news...'/>

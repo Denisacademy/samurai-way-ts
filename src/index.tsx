@@ -8,7 +8,6 @@ import store from './redux/redux-store'
 
 let rerenderEntireTree = () => ReactDOM.render(<App store={store}/>, document.getElementById('root'));
 
-
 rerenderEntireTree();
 
 store.subscribe(() => rerenderEntireTree());

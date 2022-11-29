@@ -121,37 +121,6 @@ export const state: RootStateType = {
     }
 }
 
-// export const addPost = (postMessage: string) => {
-//     const newPost: PostsType = {
-//         id: 5,
-//         color: 'blue',
-//         status: 'cyan',
-//         time: '13:06',
-//         name: 'Pinokio',
-//         message: postMessage,
-//         likesCount: 0
-//     }
-//     state.profilePage.newPostText = ''
-//     state.profilePage.posts.push(newPost)
-//
-//     rerenderEntireTree()
-//
-// }
-//
-// export const updateNewPostText = (newText: string) => {
-//     state.profilePage.newPostText = newText
-//     rerenderEntireTree()
-// }
-//
-// export const subscribe = (observer: () => void) => {
-//         rerenderEntireTree = observer
-// }
-
-// export const subscribe = (observer: (state: RootStateType) => void) => {
-//     rerenderEntireTree = observer
-// }
-
-
 export type StoreType = {
     state: RootStateType,
     subscriber: () => void,
@@ -159,28 +128,10 @@ export type StoreType = {
     getState: () => RootStateType
     subscribe: (callback: () => void) => void
 
-    // updateNewPostText: (newText: string) => void
-    // addPost: (newPost: string) => void
+
     dispatch: (action: ActionsTypes) => void
 }
 
-// export type AddPostActionType = {
-//     type: 'ADD-POST'
-//     postMessage: string
-// }
-
-//export type AddPostActionType = ReturnType<typeof addPostAC>
-
-
-//export type updateNewPostText = ReturnType<typeof changeNewText>
-
-
-// export type updateNewPostText = {
-//     type: 'UPDATE-NEW-POST-TEXT'
-//     newText: string
-// }
-
-// export type ActionsTypes = AddPostActionType | updateNewPostText
 export type ActionsTypes = ReturnType<typeof addPostAC>
     | ReturnType<typeof changeNewTextAC>
     | ReturnType<typeof changeTextBodyAC>
@@ -197,56 +148,6 @@ export const store: StoreType = {
     getState() {
         return this.state
     },
-    // updateNewPostText(newText) {
-    //     this.state.profilePage.newPostText = newText
-    //     this.subscriber()
-    // },
-    // addPost(postMessage) {
-    //     const newPost: PostsType = {
-    //         id: 5,
-    //         color: 'blue',
-    //         status: 'cyan',
-    //         time: '13:06',
-    //         name: 'Pinokio',
-    //         message: postMessage,
-    //         likesCount: 0
-    //     }
-    //     this.state.profilePage.newPostText = ''
-    //     this.state.profilePage.posts.push(newPost)
-    //     this.subscriber()
-    //     console.log(this.state)
-    // },
-    // dispatch(action) { //{type: 'ADD-POST'}
-    //     if (action.type === ADD_POST) {
-    //         console.log(this.state)
-    //         const newPost: PostsType = {
-    //             id: 5,
-    //             color: 'blue',
-    //             status: 'cyan',
-    //             time: '13:06',
-    //             name: 'Pinokio',
-    //             message: action.postMessage,
-    //             likesCount: 0
-    //         }
-    //         this.state.profilePage.newPostText = ''
-    //         this.state.profilePage.posts.push(newPost)
-    //         this.subscriber()
-    //     }
-    //     else if (action.type === UPDATE_NEW_POST_TEXT) {
-    //         this.state.profilePage.newPostText = action.newText
-    //         this.subscriber()
-    //     }
-    //     else if (action.type === CHANGE_BODY_TEXT) {
-    //         this.state.dialogsPage.newMessageBody = action.newBody
-    //         this.subscriber()
-    //     }
-    //     else if (action.type === SEND_MESSAGE) {
-    //         const body: MessagesType = {id: 7, message: action.message}
-    //         this.state.profilePage.newPostText = ''
-    //          this.state.dialogsPage.messages.push(body)
-    //          this.subscriber()
-    //     }
-    // }
     dispatch(action: ActionsTypes) {
         this.state.profilePage = profileReducer(this.state.profilePage, action)
         this.state.dialogsPage = dialogsReducer(this.state.dialogsPage, action)
@@ -283,21 +184,5 @@ export const sendMessageAC = (message: string) => {
     } as const
 }
 
-// export const addPostAC = (postMessage: string): AddPostActionType => {
-//     return {
-//         type: ADD_POST,
-//         postMessage
-//     }
-// }
-
-// export const changeNewText = (newText: string): updateNewPostText => {
-//     return {
-//         type: UPDATE_NEW_POST_TEXT,
-//         newText
-//     }
-// }
-
-//store.dispatch({type: ADD_POST, postMessage : 'SAMURAI JS'})
-//store.dispatch({type: SEND_MESSAGE, message : 'Simba JS'})
 // @ts-ignore
 window.state = store

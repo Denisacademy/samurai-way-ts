@@ -1,3 +1,5 @@
+import {ActionsTypes} from "./state";
+
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 
@@ -58,7 +60,7 @@ const initialState: InitialProfilePageType = {
     ]
 }
 
-const profileReducer = (state: InitialProfilePageType = initialState, action: ProfileActionsType): InitialProfilePageType => {
+const profileReducer = (state: InitialProfilePageType = initialState, action: ActionsTypes): InitialProfilePageType => {
     switch (action.type) {
         case ADD_POST:
             const newPost = {
