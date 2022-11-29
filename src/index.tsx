@@ -3,22 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 
-import {store} from "./redux/state";
 import RouterComp from "./components/TestRouter/RouterComp";
+import store from './redux/redux-store'
 
-function rerenderEntireTree() {
-    ReactDOM.render(
-            <App store={store}/>,
-        document.getElementById('root')
-    );
-}
-
-//     ReactDOM.render(
-//         <RouterComp/>,
-//         document.getElementById('root')
-//     );
+let rerenderEntireTree = () => ReactDOM.render(<App store={store}/>, document.getElementById('root'));
 
 
 rerenderEntireTree();
-store.subscribe(rerenderEntireTree);
+
+store.subscribe(() => rerenderEntireTree());
 

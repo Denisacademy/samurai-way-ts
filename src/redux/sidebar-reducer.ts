@@ -1,5 +1,5 @@
 // @ts-ignore
-const sidebarReducer = (state: any, action: any) => {
+const sidebarReducer = (state= {smth: 'ololo'  }, action: any) => {
     switch (action.type) {
         default:
             return state

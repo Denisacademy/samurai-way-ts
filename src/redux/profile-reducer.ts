@@ -1,13 +1,67 @@
-// @ts-ignore
-import {ADD_POST, PostsType, UPDATE_NEW_POST_TEXT} from "./state";
+const ADD_POST = 'ADD-POST'
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 
-// const ADD_POST = 'ADD-POST'
-// const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+type PostsType = {
+    id: number,
+    message: string,
+    likesCount: number
+    time?: string
+    color?: string
+    status?: string
+    name?: string
+}
 
-const profileReducer = (state: any, action: any) => {
+type InitialProfilePageType = {
+    posts: PostsType[]
+    newPostText: string
+}
+
+const initialState: InitialProfilePageType = {
+    newPostText: 'some text',
+    posts: [
+        {
+            id: 1,
+            color: 'blue',
+            status: 'cyan',
+            time: '12:45',
+            name: 'Vasilisk',
+            message: '\'First ensure that all HTML elements have the box-sizing property set to border-box. This makes sure that... \'',
+            likesCount: 15
+        },
+        {
+            id: 2,
+            message: 'The columns inside a row are all floating to the left',
+            color: 'red',
+            status: 'orange',
+            name: 'Simbad',
+            time: '14:03',
+            likesCount: 20
+        },
+        {
+            id: 3,
+            message: 'Disable the automatic acquisition of types for imports and requires.',
+            color: 'yellow',
+            status: 'red',
+            name: 'Germina',
+            time: '14:10',
+            likesCount: 20
+        },
+        {
+            id: 4,
+            message: 'Listen to me man never give up :)',
+            color: 'white',
+            status: 'black',
+            name: 'Donald',
+            time: '14:20',
+            likesCount: 20
+        }
+    ]
+}
+
+const profileReducer = (state: InitialProfilePageType = initialState, action: ProfileActionsType): InitialProfilePageType => {
     switch (action.type) {
         case ADD_POST:
-            const newPost: PostsType = {
+            const newPost = {
                 id: 5,
                 color: 'blue',
                 status: 'cyan',
@@ -18,9 +72,7 @@ const profileReducer = (state: any, action: any) => {
             }
             state.newPostText = ''
             state.posts.push(newPost)
-
             return state
-
         case UPDATE_NEW_POST_TEXT:
             state.newPostText = action.newText
             return state
@@ -28,18 +80,21 @@ const profileReducer = (state: any, action: any) => {
             return state
     }
 }
-export default profileReducer
+
+export type ProfileActionsType = ReturnType<typeof addPostAC> | ReturnType<typeof changeNewTextAC>
 
 export const addPostAC = (postMessage: string) => {
-    return {
+    return ({
         type: ADD_POST,
         postMessage
-    } as const
+    }) as const
 }
 
 export const changeNewTextAC = (newText: string) => {
-    return {
+    return ({
         type: UPDATE_NEW_POST_TEXT,
         newText
-    } as const
+    }) as const
 }
+
+export default profileReducer
