@@ -63,6 +63,7 @@ const initialState: InitialProfilePageType = {
 const profileReducer = (state: InitialProfilePageType = initialState, action: ActionsTypes): InitialProfilePageType => {
     switch (action.type) {
         case ADD_POST:
+            console.log(action)
             const newPost = {
                 id: 5,
                 color: 'blue',
@@ -72,12 +73,9 @@ const profileReducer = (state: InitialProfilePageType = initialState, action: Ac
                 message: action.postMessage,
                 likesCount: 0
             }
-            state.newPostText = ''
-            state.posts.push(newPost)
-            return state
+            return {...state, posts: [...state.posts, newPost], newPostText: ''}
         case UPDATE_NEW_POST_TEXT:
-            state.newPostText = action.newText
-            return state
+            return {...state, newPostText : action.newText}
         default:
             return state
     }

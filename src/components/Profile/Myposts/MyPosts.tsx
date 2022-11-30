@@ -9,12 +9,11 @@ type MyPostsProps = {
     addPost: (postMessage: string) => void
     updateNewPostText: (newText: string) => void
     newPostText: string
-
 }
 
-const MyPosts = (props: MyPostsProps) => {
-    console.log('my piosts', props)
-    //const state = props.state.getState().profilePage
+const MyPosts = (props: any) => {
+    console.log('my posts', props)
+    const state = props
     //const newPostElement = createRef<HTMLInputElement>()
 
     // const addPostHandler = (e: any) => {
@@ -33,14 +32,14 @@ const MyPosts = (props: MyPostsProps) => {
 
     const addPostHandler = (e: React.SyntheticEvent) => {
         e.preventDefault()
-        props.addPost(props.newPostText)
+        props.addPost(props.profilePage.newPostText)
     }
 
     const onPostChange = (e: ChangeEvent<HTMLInputElement>) => {
         props.updateNewPostText(e.currentTarget.value)
     }
 
-    const postElements = props.posts.map((post: any) => <Post key={post.id}  {...post}/>)
+    const postElements = props.profilePage.posts.map((post: any) => <Post key={post.id}  {...post}/>)
 
     return (
         <div className={styles.myPosts}>

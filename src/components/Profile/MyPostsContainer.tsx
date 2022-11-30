@@ -1,6 +1,7 @@
 import MyPosts from "./MyPosts/MyPosts";
 import {addPostAC, changeNewTextAC} from "../../redux/state";
 import {connect} from "react-redux";
+import {AppStateType} from "../../redux/redux-store";
 
 // const MyPostsContainer = (props: any) => {
 //     const state = props.store.getState().profilePage
@@ -22,7 +23,11 @@ import {connect} from "react-redux";
 //     />
 // }
 
-const MapStateToProps = (state: any) => {
+type MapStateToPropsType = {
+    profilePage: AppStateType
+}
+
+const MapStateToProps = (state: AppStateType) => {
     return {
         profilePage: state.profilePage
     }

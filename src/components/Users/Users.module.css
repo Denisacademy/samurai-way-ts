@@ -1,0 +1,39 @@
+.users {
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.user {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.avatar {
+    width: 100px;
+}
+
+.userInfo {
+    border: 3px solid #e4e4e43b;
+    border-radius: 19px;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    min-width: 500px;
+    max-width: 750px;
+    margin-bottom: 20px;
+}
+
+.btnStatus {
+    background: #21d731;
+    padding: 5px 10px;
+    color: white;
+    border: none;
+    margin-top: 10px;
+}
+
+.userInfoBlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

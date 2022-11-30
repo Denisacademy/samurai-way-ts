@@ -26,13 +26,9 @@ const initialState: dialogsPageType = {
 const dialogsReducer = (state: dialogsPageType = initialState, action: ActionsTypes): dialogsPageType => {
     switch (action.type) {
         case  CHANGE_BODY_TEXT:
-            state.newMessageBody = action.newBody
-            return state
+            return {...state, newMessageBody: action.newBody}
         case SEND_MESSAGE :
-            console.log(action)
-            state.messages.push({id: 7, message: action.message})
-            state.newMessageBody = ''
-            return state
+            return {...state, messages: [...state.messages, {id: 7, message: action.message}], newMessageBody: ''}
         default:
             return state
     }
