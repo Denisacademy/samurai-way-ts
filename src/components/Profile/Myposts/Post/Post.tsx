@@ -1,12 +1,12 @@
 import styles from "./Post.module.css";
 import React from "react";
-import {PostsType} from "../../../../redux/state";
+import {PostsType} from "../../../../redux/profile-reducer";
 
-type PostProps = PostsType
+
 
 const time = new Date().getHours() + ':' + new Date().getMinutes()
 
-const Post = (props: PostProps) => {
+const Post = (props: PostsType) => {
 
     return (
         <>

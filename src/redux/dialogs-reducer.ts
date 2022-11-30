@@ -1,9 +1,23 @@
-import {ActionsTypes, dialogsPageType} from "./state";
-
 const CHANGE_BODY_TEXT = 'CHANGE-BODY-TEXT'
 const SEND_MESSAGE = 'SEND-MESSAGE'
 
-const initialState: dialogsPageType = {
+export type MessageType = {
+    id: number
+    message: string
+}
+
+export type DialogType = {
+    id: number
+    name: string
+}
+
+export type InitialStateType = {
+    messages: Array<MessageType>
+    dialogs: Array<DialogType>
+    newMessageBody: string
+}
+
+const initialState: InitialStateType = {
     messages: [
         {id: 1, message: 'Hi'},
         {id: 2, message: 'How are you'},
@@ -23,7 +37,7 @@ const initialState: dialogsPageType = {
     newMessageBody: 'Party size'
 }
 
-const dialogsReducer = (state: dialogsPageType = initialState, action: ActionsTypes): dialogsPageType => {
+const dialogsReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
         case  CHANGE_BODY_TEXT:
             return {...state, newMessageBody: action.newBody}
@@ -34,7 +48,7 @@ const dialogsReducer = (state: dialogsPageType = initialState, action: ActionsTy
     }
 }
 
-export type DialogsActionsType = ReturnType<typeof changeTextBodyAC> | ReturnType<typeof sendMessageAC>
+export type ActionsTypes = ReturnType<typeof changeTextBodyAC> | ReturnType<typeof sendMessageAC>
 
 export const changeTextBodyAC = (newBody: string) => {
     return ({

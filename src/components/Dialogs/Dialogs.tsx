@@ -4,16 +4,11 @@ import {NavLink} from "react-router-dom";
 
 import {DialogItem} from "./DialogItem/DialogItem";
 import {MessageItem} from "./Message/Message";
+import {DialogsTypeProps} from "./DialogsContainer";
 
-import {dialogsPageType,} from "../../redux/state";
 
-type DialogsProps = {
-    dialogsPage: dialogsPageType
-    addMessage: (message: string) => void
-    changeBodyText: (newBody: string) => void
-}
 
-const Dialogs = (props: DialogsProps) => {
+const Dialogs = (props: DialogsTypeProps) => {
     const state = props.dialogsPage
     console.log('dialogs', state, props)
 
@@ -30,10 +25,15 @@ const Dialogs = (props: DialogsProps) => {
 
     const addMessage = () => props.addMessage(state.newMessageBody)
 
-    const dialogElements = state.dialogs.map((dialog: any) => <DialogItem key={dialog.id} name={dialog.name}
-                                                                          id={dialog.id}/>)
-    const messagesElements = state.messages.map((message: any) => <MessageItem key={message.id}
-                                                                               message={message.message}/>)
+    const dialogElements = state.dialogs.map((dialog) => <DialogItem
+        key={dialog.id}
+        name={dialog.name}
+
+        id={dialog.id}/>)
+    const messagesElements = state.messages.map((message) => <MessageItem
+        key={message.id}
+        id={message.id}
+        message={message.message}/>)
 
     return (
         <div className={style.dialogs}>

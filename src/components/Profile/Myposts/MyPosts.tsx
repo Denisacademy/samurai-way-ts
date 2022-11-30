@@ -2,18 +2,9 @@ import styles from "./MyPosts.module.css";
 import Post from "./Post/Post";
 import React, {ChangeEvent, createRef} from "react";
 
-import {PostsType} from "../../../redux/state";
+import {MyPostsPropsType} from "../MyPostsContainer";
 
-type MyPostsProps = {
-    posts: Array<PostsType>
-    addPost: (postMessage: string) => void
-    updateNewPostText: (newText: string) => void
-    newPostText: string
-}
-
-const MyPosts = (props: any) => {
-    console.log('my posts', props)
-    const state = props
+const MyPosts = (props: MyPostsPropsType) => {
     //const newPostElement = createRef<HTMLInputElement>()
 
     // const addPostHandler = (e: any) => {
@@ -47,7 +38,7 @@ const MyPosts = (props: any) => {
                 <h2>My posts</h2>
                 <input name='posUser'
                        onChange={onPostChange}
-                    value={props.newPostText}
+                    value={props.profilePage.newPostText}
                     // ref={newPostElement}
                        type="text"
                        placeholder='your news...'/>

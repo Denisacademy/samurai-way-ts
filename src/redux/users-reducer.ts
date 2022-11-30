@@ -51,7 +51,7 @@ const initialState: initialStateType = {
     ]
 }
 
-const usersReducer = (state: initialStateType = initialState, action: ActionsType): initialStateType => {
+const usersReducer = (state: initialStateType = initialState, action: ActionsTypes): initialStateType => {
     switch (action.type) {
         case FOLLOW:
             return {...state, users: state.users.map(u => u.id === action.userId ? ({...u, followed: true}) : u)}
@@ -64,7 +64,7 @@ const usersReducer = (state: initialStateType = initialState, action: ActionsTyp
     }
 }
 
-type ActionsType =
+type ActionsTypes =
     ReturnType<typeof followedUserAC>
     | ReturnType<typeof unfollowedUserAC>
     | ReturnType<typeof setUsersAC>
